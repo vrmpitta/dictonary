@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - Online Dictionary & Thesaurus</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+            color: #2c3e50;
+        }
+
+        header,
+        footer {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.5em 2em;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+            color: #9b59b6;
+        }
+
+        nav a {
+            color: #ecf0f1;
+            margin-right: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #9b59b6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 1.8em;
+        }
+
+        p,
+        label {
+            line-height: 1.6;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        form button {
+            background-color: #9b59b6;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #8e44ad;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Contact Us</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms.html">Terms</a>
+            <a href="refund-policy.html">Refund Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>We’d love to hear from you!</h2>
+        <p>Have questions, suggestions, or feedback? Fill out the form below and we'll get back to you shortly.</p>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Online Dictionary & Thesaurus. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
